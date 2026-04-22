@@ -57,3 +57,5 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+(unpin! org-roam)
+(package! org-roam-ui)
