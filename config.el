@@ -13,8 +13,16 @@
 
 (setq org-directory "~/org/")
 (setq org-roam-directory "~/roam")
-(setq org-modern-replace-stars '"✱")
 
+(after! org-modern
+  (setq org-modern-star 'replace)
+  (setq org-modern-replace-stars '"✱"))
+
+(after! treemacs
+  (setq treemacs-follow-mode t)
+  (setq treemacs-project-follow-mode t)
+  (setq treemacs-add-and-display-current-project-exclusively t)
+  (add-hook 'projectile-after-switch-project-hook #'treemacs-add-and-display-current-project-exclusively))
 ;; org roam ui setup(must also install org-roam-ui from MELPA)
 (use-package! websocket
   :after org-roam)
