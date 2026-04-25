@@ -1,8 +1,8 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (setq doom-theme 'doom-dracula)
-(setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 16))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 24 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 24))
 ;; start in fullscreen
 (setq default-frame-alist '((fullscreen . maximized)))
 
@@ -18,6 +18,8 @@
   (setq org-modern-star 'replace)
   (setq org-modern-replace-stars '"✱"))
 
+(add-hook 'gdscript-mode-hook 'eglot-ensure)
+(setq gdscript-godot-executable "/home/spider/Downloads/linux64-g462-s164-gs4181-editor/godotsteam.462.editor.x86_64")
 (after! treemacs
   (setq treemacs-follow-mode t)
   (setq treemacs-project-follow-mode t)
