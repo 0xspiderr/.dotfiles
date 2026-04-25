@@ -18,8 +18,15 @@
   (setq org-modern-star 'replace)
   (setq org-modern-replace-stars '"✱"))
 
+;; gdscript customization
 (add-hook 'gdscript-mode-hook 'eglot-ensure)
-(setq gdscript-godot-executable "/home/spider/Downloads/linux64-g462-s164-gs4181-editor/godotsteam.462.editor.x86_64")
+(setq gdscript-use-tab-indents t) ;; If true, use tabs for indents. Default: t
+(setq gdscript-indent-offset 4)
+(setq gdscript-gdformat-save-and-format t)
+(setq gdscript-godot-executable "~/Downloads/linux64-g462-s164-gs4181-editor/godotsteam.462.editor.x86_64")
+
+
+;; treemacs customization
 (after! treemacs
   (setq treemacs-follow-mode t)
   (setq treemacs-project-follow-mode t)
