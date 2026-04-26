@@ -14,7 +14,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(fireplace org-roam-ui org-superstar org-roam)))
+ '(package-selected-packages
+   '(dash dash-docs fireplace org-roam-ui org-superstar org-roam)))
 
 
 (custom-set-faces

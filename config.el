@@ -19,7 +19,7 @@
   (setq org-modern-replace-stars '"✱"))
 
 ;; gdscript customization
-(add-hook 'gdscript-mode-hook 'eglot-ensure)
+;; (add-hook 'gdscript-mode-hook 'eglot-ensure)
 (setq gdscript-use-tab-indents t) ;; If true, use tabs for indents. Default: t
 (setq gdscript-indent-offset 4)
 (setq gdscript-gdformat-save-and-format t)
