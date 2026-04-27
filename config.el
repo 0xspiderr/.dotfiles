@@ -1,10 +1,26 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (setq doom-theme 'doom-dracula)
-(setq doom-font (font-spec :family "JetBrains Mono" :size 24 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 24))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 18 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 20))
 ;; start in fullscreen
 (setq default-frame-alist '((fullscreen . maximized)))
+(set-frame-parameter nil 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
+;; Automatically zoom in by 2 levels for every buffer
+(add-hook! 'after-change-major-mode-hook
+  (defun my/auto-zoom-in-except-dashboard ()
+    (unless (or (eq major-mode '+doom-dashboard-mode)
+                (string= (buffer-name) "*doom*")
+                (minibufferp))
+      (text-scale-set 2))))
+;; Enable automatic documentation popups for lsp-mode
+(after! lsp-ui
+  (setq lsp-ui-doc-enable t                 ; Enable the doc popup
+        lsp-ui-doc-show-with-cursor t       ; Show popup when the text cursor rests on a method
+        lsp-ui-doc-show-with-mouse t        ; Show popup when the mouse pointer hovers over a method
+        lsp-ui-doc-delay 0.5                ; Delay in seconds before it pops up (adjust to preference)
+        lsp-ui-doc-position 'at-point))     ; Show the popup right next to the cursor/mouse
 
 (setq-default line-spacing 0.20)
 (setq display-line-numbers-type 'relative)
@@ -27,11 +43,16 @@
 
 
 ;; treemacs customization
-(after! treemacs
-  (setq treemacs-follow-mode t)
-  (setq treemacs-project-follow-mode t)
-  (setq treemacs-add-and-display-current-project-exclusively t)
-  (add-hook 'projectile-after-switch-project-hook #'treemacs-add-and-display-current-project-exclusively))
+;; Automatically open Treemacs and show only the current project
+(add-hook! 'projectile-after-switch-project-hook
+  (defun my/treemacs-auto-open-safe ()
+    (require 'treemacs)
+    ;; Check if Treemacs is closed. If so, open it using Doom's native toggle.
+    (unless (treemacs-get-local-window)
+      (+treemacs/toggle))
+    ;; Now that Doom knows it is open, sync the project exclusively
+    (treemacs-display-current-project-exclusively)))
+
 ;; org roam ui setup(must also install org-roam-ui from MELPA)
 (use-package! websocket
   :after org-roam)
