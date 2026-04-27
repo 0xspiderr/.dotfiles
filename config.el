@@ -41,18 +41,6 @@
 (setq gdscript-gdformat-save-and-format t)
 (setq gdscript-godot-executable "~/Downloads/linux64-g462-s164-gs4181-editor/godotsteam.462.editor.x86_64")
 
-
-;; treemacs customization
-;; Automatically open Treemacs and show only the current project
-(add-hook! 'projectile-after-switch-project-hook
-  (defun my/treemacs-auto-open-safe ()
-    (require 'treemacs)
-    ;; Check if Treemacs is closed. If so, open it using Doom's native toggle.
-    (unless (treemacs-get-local-window)
-      (+treemacs/toggle))
-    ;; Now that Doom knows it is open, sync the project exclusively
-    (treemacs-display-current-project-exclusively)))
-
 ;; org roam ui setup(must also install org-roam-ui from MELPA)
 (use-package! websocket
   :after org-roam)
