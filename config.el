@@ -1,12 +1,13 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (setq doom-theme 'doom-dracula)
-(setq doom-font (font-spec :family "JetBrains Mono" :size 18 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 20))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 14 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 16))
 ;; start in fullscreen
 (setq default-frame-alist '((fullscreen . maximized)))
 (set-frame-parameter nil 'alpha-background 95)
 (add-to-list 'default-frame-alist '(alpha-background . 95))
+
 ;; Automatically zoom in by 2 levels for every buffer
 (add-hook! 'after-change-major-mode-hook
   (defun my/auto-zoom-in-except-dashboard ()
@@ -14,13 +15,6 @@
                 (string= (buffer-name) "*doom*")
                 (minibufferp))
       (text-scale-set 2))))
-;; Enable automatic documentation popups for lsp-mode
-(after! lsp-ui
-  (setq lsp-ui-doc-enable t                 ; Enable the doc popup
-        lsp-ui-doc-show-with-cursor t       ; Show popup when the text cursor rests on a method
-        lsp-ui-doc-show-with-mouse t        ; Show popup when the mouse pointer hovers over a method
-        lsp-ui-doc-delay 0.5                ; Delay in seconds before it pops up (adjust to preference)
-        lsp-ui-doc-position 'at-point))     ; Show the popup right next to the cursor/mouse
 
 (setq-default line-spacing 0.20)
 (setq display-line-numbers-type 'relative)
@@ -55,3 +49,5 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
+
+
